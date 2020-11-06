@@ -2,8 +2,6 @@
 node_modules
 /dist
 
-.browserslistrc
-
 # local env files
 .env.local
 .env.*.local
