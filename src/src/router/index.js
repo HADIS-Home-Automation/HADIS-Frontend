@@ -1,25 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import content from "../configJSON.json"
+
+let routes = [];
+let groups = content.groups;
+
+// dynamically build routes from configJSON
+for( let i in groups){
+
+  let route = {};
+  route["path"] = groups[i].groupRoute;
+  route["name"] = groups[i].groupNameMQTT;
+
+  routes.push(route)
+}
 
 Vue.use(VueRouter);
-
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
-];
 
 const router = new VueRouter({
   mode: "history",

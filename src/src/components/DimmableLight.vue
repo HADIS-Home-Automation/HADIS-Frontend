@@ -1,68 +1,76 @@
 <template>
+  <v-col cols="10" lg="5" xl="4">
+    <!-- dimmable light card -->
+    <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
-  <!-- dimmable light card -->
-  <v-card :disabled="status === 'OFFLINE'" class="mx-auto" max-width="600">
+      <!-- card toolbar -->
+      <v-toolbar flat>
+        <v-toolbar-title><b>{{ this.deviceName }}</b></v-toolbar-title>
+        <v-spacer></v-spacer>
 
-    <!-- card toolbar -->
-    <v-toolbar flat>
-      <v-toolbar-title><b>{{ deviceName }}</b></v-toolbar-title>
-      <v-spacer></v-spacer>
+        <!-- status indicator -->
+        <div :style="{color: statusColor}"><b>{{ status }}</b></div>
 
-      <!-- status indicator -->
-      <div :style="{color: statusColor}"><b>{{ status }}</b></div>
+        <!-- setup button -->
+        <v-btn icon @click.stop="dialog=true">
+          <v-icon>mdi-cog</v-icon>
+        </v-btn>
 
-      <!-- setup button -->
-      <v-btn icon @click.stop="dialog=true">
-        <v-icon>mdi-cog</v-icon>
-      </v-btn>
+        <!-- dialog temporary -->
+        <v-dialog v-model="dialog" max-width="500">
+          <v-card>
+            <v-card-title class="headline">Start device's setup mode?</v-card-title>
+            <v-card-text> By clicking <b>proceed</b> start the device's setup mode. This will disconnect the device from
+              the broker and let you configure its settings.
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary darken-1" text @click.stop="dialog=false">Cancel</v-btn>
+              <v-btn color="primary darken-1" text @click.stop="dialog=false">Proceed</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
 
-      <!-- dialog temporary -->
-      <v-dialog v-model="dialog" max-width="500">
-        <v-card>
-          <v-card-title class="headline">Start device's setup mode?</v-card-title>
-          <v-card-text> By clicking <b>proceed</b> start the device's setup mode. This will disconnect the device from the broker and let you configure its settings.</v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary darken-1" text @click.stop="dialog=false">Cancel</v-btn>
-            <v-btn color="primary darken-1" text @click.stop="dialog=false">Proceed</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      </v-toolbar>
 
-    </v-toolbar>
+      <!-- card body -->
+      <v-card-text>
+        <!-- percentage text -->
+        <v-row class="mb-4" justify="space-between">
+          <v-col class="text-left">
+            <span class="display-3 font-weight-light">{{ percent }}</span>
+            <span class="subheading font-weight-light mr-1">%</span>
+          </v-col>
 
-    <v-card-text>
-      <!-- percentage text -->
-      <v-row class="mb-4" justify="space-between">
-        <v-col class="text-left">
-          <span class="display-3 font-weight-light">{{ percent }}</span>
-          <span class="subheading font-weight-light mr-1">%</span>
-        </v-col>
+          <!-- toggle button -->
+          <v-col class="text-right">
+            <v-btn dark depressed fab :color="color" @click="toggle">
+              <v-icon large>
+                {{ isOn ? 'mdi-lightbulb-on-outline' : 'mdi-lightbulb-outline' }}
+              </v-icon>
+            </v-btn>
+          </v-col>
 
-        <!-- toggle button -->
-        <v-col class="text-right">
-          <v-btn dark depressed fab :color="color" @click="toggle">
-            <v-icon large>
-              {{ isOn ? 'mdi-lightbulb-on-outline' : 'mdi-lightbulb-outline' }}
-            </v-icon>
-          </v-btn>
-        </v-col>
+        </v-row>
 
-      </v-row>
+        <!-- slider -->
+        <v-slider v-model="sliderValue" @change="publish()" hange="" track-color="grey" min="0" max="1023" step="32" thumb-label>
 
-      <!-- slider -->
-      <v-slider v-model="sliderValue" @change="publish()" hange="" track-color="grey" min="0" max="1023" step="32" thumb-label>
-        <template v-slot:prepend>
-          <v-icon @click="decrement">mdi-minus</v-icon>
-        </template>
-        <template v-slot:append>
-          <v-icon @click="increment">mdi-plus</v-icon>
-        </template>
-      </v-slider>
+          <!-- slider - button -->
+          <template v-slot:prepend>
+            <v-icon @click="decrement">mdi-minus</v-icon>
+          </template>
 
+          <!-- slider + button -->
+          <template v-slot:append>
+            <v-icon @click="increment">mdi-plus</v-icon>
+          </template>
 
-    </v-card-text>
-  </v-card>
+        </v-slider>
+
+      </v-card-text>
+    </v-card>
+  </v-col>
 </template>
 
 <script>
@@ -85,13 +93,13 @@ export default {
   computed: {
     // generate mqtt topics
     topicLight() {
-      return "HADIS/" + this.groupName + "/" + this.deviceName + "/LIGHT"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/LIGHT"
     },
     topicLightToggle() {
-      return "HADIS/" + this.groupName + "/" + this.deviceName + "/LIGHT-TOGGLE"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/LIGHT-TOGGLE"
     },
     topicStatus() {
-      return "HADIS/" + this.groupName + "/" + this.deviceName + "/STATUS"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/STATUS"
     },
 
     // toggle button color
@@ -124,8 +132,7 @@ export default {
       if (this.sliderValue > 0) {
         this.brightnessToggleMemory = this.sliderValue;
         this.sliderValue = 0;
-      }
-      else {
+      } else {
         this.sliderValue = this.brightnessToggleMemory;
       }
       this.publish();
@@ -136,8 +143,8 @@ export default {
     },
   },
   props: {
-    deviceName: String,
-    groupName: String,
+    groupNameMQTT : String,
+    deviceName : String,
   },
   watch: {
     // trigger on sliderValue change
@@ -192,4 +199,3 @@ export default {
 };
 </script>
 
-<style scoped></style>

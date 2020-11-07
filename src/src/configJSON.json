@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "groupRoute": "/",
+      "groupNameMQTT": "Dashboard",
+      "groupNameDISPLAY": "Dashboard",
+      "components": [
+
+      ]
+    },
+    {
+      "groupRoute": "/matejSoba",
+      "groupNameMQTT": "MatejSoba",
+      "groupNameDISPLAY": "Matej Soba",
+      "components": [
+        {
+          "deviceName": "DeskLight",
+          "componentType": "DimmableLight"
+        },
+        {
+          "deviceName": "DeskLight2",
+          "componentType": "DimmableLight"
+        }
+      ]
+    },
+    {
+      "groupRoute": "/dnevnaSoba",
+      "groupNameMQTT": "DnevnaSoba",
+      "groupNameDISPLAY": "DnevnaSoba",
+      "components": [
+        {
+          "deviceName": "DeskLight3",
+          "componentType": "DimmableLight"
+        }
+      ]
+    }
+  ]
+}

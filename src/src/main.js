@@ -50,6 +50,14 @@ mqttClient.on('message',  (topic, message) => {
 
 Vue.config.productionTip = false;
 
+
+// component registration for dynamic rendering
+import DimmableLight from "@/components/DimmableLight";
+
+Vue.component("DimmableLight", DimmableLight)
+
+
+// vue init
 new Vue({
     store,
     router,
