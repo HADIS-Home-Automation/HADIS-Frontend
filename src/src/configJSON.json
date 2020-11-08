@@ -18,8 +18,8 @@
           "componentType": "DimmableLight"
         },
         {
-          "deviceName": "DeskLight2",
-          "componentType": "DimmableLight"
+          "deviceName": "DeskLight1",
+          "componentType": "WifiSwitch"
         }
       ]
     },

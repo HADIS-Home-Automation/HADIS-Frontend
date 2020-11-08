@@ -32,7 +32,7 @@
       <!-- heading container -->
       <v-container>
         <v-row align="center">
-          <div class="text-h3 pa-auto mx-auto">{{ getRightGroup().groupNameDISPLAY }}</div>
+          <div class="text-h3 font-weight-light pa-auto mx-auto">{{ getRightGroup().groupNameDISPLAY }}</div>
         </v-row>
       </v-container>
 

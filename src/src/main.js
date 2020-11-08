@@ -8,7 +8,7 @@ const mqtt = require("mqtt");
 
 // connection init to mqtt broker with web socket
 const clientId = "HADIS-Client-" + Math.random().toString(16).substr(2, 8);
-const host = "ws://10.0.0.71:8883";
+const host = "ws://10.0.0.71:8080";
 const options = {
     keepalive: 60,
     clientId: clientId,
@@ -20,7 +20,6 @@ const options = {
 
 // connect to broker
 export let mqttClient = mqtt.connect(host, options);
-console.log(mqttClient);
 
 // connection status listeners
 mqttClient.on("error", err => {
@@ -32,7 +31,7 @@ mqttClient.on("reconnect", () => {
 });
 
 mqttClient.on("connect", () => {
-    console.log("Client connected:" + clientId);
+    console.log("Client connected: " + clientId);
 });
 
 // mqtt message listener
@@ -54,9 +53,11 @@ Vue.config.productionTip = false;
 // component registration for dynamic rendering
 import Dialog_DeviceSetup from "@/components/Dialog_DeviceSetup";
 import DimmableLight from "@/components/DimmableLight";
+import WifiSwitch from "@/components/WifiSwitch";
 
 Vue.component("DeviceSetupDialog", Dialog_DeviceSetup);
 Vue.component("DimmableLight", DimmableLight);
+Vue.component("WifiSwitch", WifiSwitch);
 
 
 // vue init

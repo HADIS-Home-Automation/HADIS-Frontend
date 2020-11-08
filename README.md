@@ -1,2 +1,2 @@
 # HADIS-Frontend
-Frontend for HADIS
+Frontend client for HADIS. 

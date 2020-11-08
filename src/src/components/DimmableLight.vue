@@ -16,7 +16,7 @@
           <v-icon>mdi-cog</v-icon>
         </v-btn>
 
-        <!-- dialog temporary -->
+        <!-- setup dialog -->
         <DeviceSetupDialog v-model="dialog" :device-name="this.deviceConfig.deviceName" :groupNameMQTT="this.groupNameMQTT"/>
 
       </v-toolbar>
@@ -63,10 +63,7 @@
 
 <script>
 import {mqttClient} from "@/main";
-
 // initialisation for vuex store mutation subscription
-let unsubscribe;
-
 export default {
   name: "DimmableLight",
   components: {},
@@ -77,6 +74,7 @@ export default {
     isOn: false,
     status: 'OFFLINE',
     dialog: false,
+    unsubscribe: null,
   }),
   computed: {
     // generate mqtt topics
@@ -89,7 +87,6 @@ export default {
     topicStatus() {
       return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/STATUS"
     },
-
     // toggle button color
     color() {
       if (this.sliderValue > 0) return 'primary'
@@ -101,7 +98,6 @@ export default {
       if (this.status === "OFFLINE") return this.$vuetify.theme.themes.dark.error
       return 'gray'
     },
-
   },
   methods: {
     // on - press handle brightness decrease by 1 tick
@@ -140,7 +136,6 @@ export default {
       // calculate percentage of brightness and determine if light is on
       this.percent = Math.round(this.sliderValue / 1024 * 100);
       this.isOn = this.sliderValue > 0;
-
       // on sliderValue moving to 0 store toggle memory
       if (prevValue > 0 && value === 0) {
         this.brightnessToggleMemory = prevValue;
@@ -148,8 +143,8 @@ export default {
     },
   },
   created() {
-
-    unsubscribe = this.$store.subscribe((mutation) => {
+    // initialisation for vuex store mutation subscription
+    this.unsubscribe = this.$store.subscribe((mutation) => {
 
       let messageState = mutation.payload;
       //console.log(messageState.msg + " on: " + messageState.topic)
@@ -158,17 +153,14 @@ export default {
       if (messageState.topic === this.topicStatus) {
         this.status = messageState.msg.toString();
       }
-
       // handle message for device brightness
       if (messageState.topic === this.topicLight) {
         this.sliderValue = parseInt(messageState.msg.toString());
       }
-
       // handle message for device brightness toggle value
       if (messageState.topic === this.topicLightToggle) {
         this.brightnessToggleMemory = parseInt(messageState.msg.toString());
       }
-
     });
   },
   // on component mount subscribe to required mqtt topics
@@ -179,11 +171,10 @@ export default {
   },
   // on component destroy unsubscribe from mqtt topics & vuex mqtt message store
   destroyed() {
-    unsubscribe();
+    this.unsubscribe();
     mqttClient.unsubscribe(this.topicLight);
     mqttClient.unsubscribe(this.topicLightToggle);
     mqttClient.unsubscribe(this.topicStatus);
   }
 };
 </script>
-
