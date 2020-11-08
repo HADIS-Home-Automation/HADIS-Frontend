@@ -42,7 +42,7 @@
 
           <!-- dynamic control component rendering -->
           <template v-for="component in getRightGroup().components">
-            <component :is="component.componentType" :deviceName=component.deviceName
+            <component :is="component.componentType" :deviceConfig=component
                        :groupNameMQTT=getRightGroup().groupNameMQTT :key="component.deviceName"></component>
           </template>
 

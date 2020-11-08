@@ -52,9 +52,11 @@ Vue.config.productionTip = false;
 
 
 // component registration for dynamic rendering
+import Dialog_DeviceSetup from "@/components/Dialog_DeviceSetup";
 import DimmableLight from "@/components/DimmableLight";
 
-Vue.component("DimmableLight", DimmableLight)
+Vue.component("DeviceSetupDialog", Dialog_DeviceSetup);
+Vue.component("DimmableLight", DimmableLight);
 
 
 // vue init

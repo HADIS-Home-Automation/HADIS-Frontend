@@ -5,7 +5,7 @@
 
       <!-- card toolbar -->
       <v-toolbar flat>
-        <v-toolbar-title><b>{{ this.deviceName }}</b></v-toolbar-title>
+        <v-toolbar-title><b>{{ this.deviceConfig.deviceName }}</b></v-toolbar-title>
         <v-spacer></v-spacer>
 
         <!-- status indicator -->
@@ -17,19 +17,7 @@
         </v-btn>
 
         <!-- dialog temporary -->
-        <v-dialog v-model="dialog" max-width="500">
-          <v-card>
-            <v-card-title class="headline">Start device's setup mode?</v-card-title>
-            <v-card-text> By clicking <b>proceed</b> start the device's setup mode. This will disconnect the device from
-              the broker and let you configure its settings.
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary darken-1" text @click.stop="dialog=false">Cancel</v-btn>
-              <v-btn color="primary darken-1" text @click.stop="dialog=false">Proceed</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+        <DeviceSetupDialog v-model="dialog" :device-name="this.deviceConfig.deviceName" :groupNameMQTT="this.groupNameMQTT"/>
 
       </v-toolbar>
 
@@ -93,13 +81,13 @@ export default {
   computed: {
     // generate mqtt topics
     topicLight() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/LIGHT"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/LIGHT"
     },
     topicLightToggle() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/LIGHT-TOGGLE"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/LIGHT-TOGGLE"
     },
     topicStatus() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/STATUS"
+      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/STATUS"
     },
 
     // toggle button color
@@ -144,7 +132,7 @@ export default {
   },
   props: {
     groupNameMQTT : String,
-    deviceName : String,
+    deviceConfig: Object,
   },
   watch: {
     // trigger on sliderValue change
