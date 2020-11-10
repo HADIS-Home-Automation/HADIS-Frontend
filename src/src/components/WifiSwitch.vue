@@ -5,7 +5,7 @@
 
       <!-- card toolbar -->
       <v-toolbar flat>
-        <v-toolbar-title><b>{{ this.deviceConfig.deviceName }}</b></v-toolbar-title>
+        <v-toolbar-title><b>{{ this.deviceConfig.deviceNameDISPLAY }}</b></v-toolbar-title>
         <v-spacer></v-spacer>
 
         <!-- status indicator -->
@@ -17,7 +17,7 @@
         </v-btn>
 
         <!-- setup dialog -->
-        <DeviceSetupDialog v-model="dialog" :device-name="this.deviceConfig.deviceName" :groupNameMQTT="this.groupNameMQTT"/>
+        <DeviceSetupDialog v-model="dialog" :device-config="this.deviceConfig" />
 
       </v-toolbar>
 
@@ -57,10 +57,10 @@ export default {
   computed: {
     // generate mqtt topics
     topicSwitch() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/LIGHT"
+      return "HADIS/" + this.deviceConfig.deviceName + "/SWITCH"
     },
     topicStatus() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/STATUS"
+      return "HADIS/" + this.deviceConfig.deviceName + "/STATUS"
     },
 
     // toggle button color
@@ -88,7 +88,6 @@ export default {
     },
   },
   props: {
-    groupNameMQTT : String,
     deviceConfig: Object,
   },
   created() {
@@ -96,7 +95,7 @@ export default {
     this.unsubscribe = this.$store.subscribe((mutation) => {
 
       let messageState = mutation.payload;
-      //console.log(messageState.msg + " on: " + messageState.topic)
+      console.log(messageState.msg + " on: " + messageState.topic)
 
       // handle message for device status
       if (messageState.topic === this.topicStatus) {

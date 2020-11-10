@@ -6,7 +6,7 @@
     <!-- dialog card -->
     <v-card>
       <v-card-title class="headline">Start device's setup mode?</v-card-title>
-      <v-card-text>By clicking <b>proceed</b> start the <b>{{this.deviceName}}</b> setup mode. This will disconnect the device from
+      <v-card-text>By clicking <b>proceed</b> start the <b>{{this.deviceConfig.deviceNameDISPLAY}}</b> ({{this.deviceConfig.deviceName}}) setup mode. This will disconnect the device from
         the broker and let you configure its settings.</v-card-text>
 
       <!-- dialog card buttons -->
@@ -27,8 +27,7 @@ import {mqttClient} from "@/main";
 export default {
   name: "Dialog_DeviceSetup",
   props: {
-    groupNameMQTT: String,
-    deviceName: String,
+    deviceConfig: Object,
     value: Boolean
   },
   computed: {
@@ -43,7 +42,7 @@ export default {
     },
     // generate mqtt topic
     topicSetup() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceName + "/SETUP"
+      return "HADIS/" + this.deviceConfig.deviceName + "/SETUP"
     }
   },
   methods:{

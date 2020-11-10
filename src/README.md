@@ -24,19 +24,19 @@ npm run lint
 HADIS frontend is built dynamically from [configJSON](src/configJSON.json).
 
 ConfigJSON form displayed bellow.
-Each **groupRoute** , **groupNameMQTT** & **deviceName**(in each group) must be unique! 
-**groupNameMQTT** & **deviceName** are limited to 20 characters (ASCII preferably).
+Each **groupRoute** & **deviceName** must be unique! 
+**deviceName** is limited to 40 characters (ASCII guaranteed to work).
 
 ```JSON
 {
 "groups": [
     {
       "groupRoute": "route for page",
-      "groupNameMQTT": "name of group for HADIS MQTT topic",
       "groupNameDISPLAY": "group name that will be displayed",
       "components": [
         {
           "deviceName": "name of device for HADIS MQTT topic",
+          "deviceNameDISPLAY": "device name that will be displayed",
           "componentType": "type of component (see available bellow)"
         }
       ]
@@ -50,11 +50,11 @@ Each **groupRoute** , **groupNameMQTT** & **deviceName**(in each group) must be 
 #### Dimmable Light
 Control component for HADIS dimmable LED light controller.
 ```
-componentType: DimmableLight
+componentType: "DimmableLight"
 ```
 
 #### WIFI Switch
 Control component for HADIS WIFI switch.
 ```
-componentType: WifiSwitch
+componentType: "WifiSwitch"
 ```

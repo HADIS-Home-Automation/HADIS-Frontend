@@ -51,12 +51,17 @@ Vue.config.productionTip = false;
 
 
 // component registration for dynamic rendering
-import Dialog_DeviceSetup from "@/components/Dialog_DeviceSetup";
-import DimmableLight from "@/components/DimmableLight";
-import WifiSwitch from "@/components/WifiSwitch";
 
+// setup dialog
+import Dialog_DeviceSetup from "@/components/Dialog_DeviceSetup";
 Vue.component("DeviceSetupDialog", Dialog_DeviceSetup);
+
+// dimmable light
+import DimmableLight from "@/components/DimmableLight";
 Vue.component("DimmableLight", DimmableLight);
+
+// wifi switch
+import WifiSwitch from "@/components/WifiSwitch";
 Vue.component("WifiSwitch", WifiSwitch);
 
 

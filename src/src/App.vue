@@ -16,7 +16,7 @@
 
           <!-- dynamic drawer navigation rendering -->
           <v-list-item @click="$router.push(group.groupRoute).catch(err => {})"
-                       v-for="group in contentJSON.groups" :key="group.groupNameMQTT">
+                       v-for="group in contentJSON.groups" :key="group.groupNameDisplay">
             <v-list-item-title>{{ group.groupNameDISPLAY }}</v-list-item-title>
           </v-list-item>
 
@@ -42,8 +42,7 @@
 
           <!-- dynamic control component rendering -->
           <template v-for="component in getRightGroup().components">
-            <component :is="component.componentType" :deviceConfig=component
-                       :groupNameMQTT=getRightGroup().groupNameMQTT :key="component.deviceName"></component>
+            <component :is="component.componentType" :deviceConfig=component :key="component.deviceName"></component>
           </template>
 
         </v-row>

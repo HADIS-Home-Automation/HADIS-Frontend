@@ -5,7 +5,7 @@
 
       <!-- card toolbar -->
       <v-toolbar flat>
-        <v-toolbar-title><b>{{ this.deviceConfig.deviceName }}</b></v-toolbar-title>
+        <v-toolbar-title><b>{{ this.deviceConfig.deviceNameDISPLAY }}</b></v-toolbar-title>
         <v-spacer></v-spacer>
 
         <!-- status indicator -->
@@ -17,7 +17,7 @@
         </v-btn>
 
         <!-- setup dialog -->
-        <DeviceSetupDialog v-model="dialog" :device-name="this.deviceConfig.deviceName" :groupNameMQTT="this.groupNameMQTT"/>
+        <DeviceSetupDialog v-model="dialog" :device-config="this.deviceConfig" />
 
       </v-toolbar>
 
@@ -79,13 +79,13 @@ export default {
   computed: {
     // generate mqtt topics
     topicLight() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/LIGHT"
+      return "HADIS/" + this.deviceConfig.deviceName + "/LIGHT"
     },
     topicLightToggle() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/LIGHT-TOGGLE"
+      return "HADIS/" + this.deviceConfig.deviceName + "/LIGHT-TOGGLE"
     },
     topicStatus() {
-      return "HADIS/" + this.groupNameMQTT + "/" + this.deviceConfig.deviceName + "/STATUS"
+      return "HADIS/" + this.deviceConfig.deviceName + "/STATUS"
     },
     // toggle button color
     color() {
@@ -127,7 +127,6 @@ export default {
     },
   },
   props: {
-    groupNameMQTT : String,
     deviceConfig: Object,
   },
   watch: {
