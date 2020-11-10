@@ -25,7 +25,7 @@ HADIS frontend is built dynamically from [configJSON](src/configJSON.json).
 
 ConfigJSON form displayed bellow.
 Each **groupRoute** & **deviceName** must be unique! 
-**deviceName** is limited to 40 characters (ASCII guaranteed to work).
+**deviceName** is limited to 40 characters (only ASCII guaranteed to work).
 
 ```JSON
 {
@@ -57,4 +57,31 @@ componentType: "DimmableLight"
 Control component for HADIS WIFI switch.
 ```
 componentType: "WifiSwitch"
+```
+
+#### Switch Board for WIFI Switches
+Component for controlling multiple HADIS WIFI switches.
+See usage example bellow.
+```
+componentType: "SwitchBoard"
+switches: [array of devices in switch board]
+```
+
+example usage:
+```JSON
+{
+    "deviceName": "NOT REQUIRED FOR THIS COMPONENT",
+    "deviceNameDISPLAY": "SwitchBoard",
+    "componentType": "SwitchBoard",
+    "switches": [
+          {
+            "deviceName": "WifiPlug1",
+            "deviceNameDISPLAY": "Plug 1"
+          },
+          {
+            "deviceName": "WifiPlug2",
+            "deviceNameDISPLAY": "Plug 2"
+          }
+    ]
+}
 ```

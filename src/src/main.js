@@ -64,6 +64,10 @@ Vue.component("DimmableLight", DimmableLight);
 import WifiSwitch from "@/components/WifiSwitch";
 Vue.component("WifiSwitch", WifiSwitch);
 
+// switchboard
+import SwitchBoard from "@/components/SwitchBoard";
+Vue.component("SwitchBoard", SwitchBoard);
+
 
 // vue init
 new Vue({

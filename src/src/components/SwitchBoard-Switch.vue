@@ -1,58 +1,42 @@
 <template>
-  <v-col cols="10" lg="5" xl="4">
-    <!-- dimmable light card -->
-    <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
-      <!-- card toolbar -->
-      <v-toolbar flat>
-        <v-toolbar-title><b>{{ this.deviceConfig.deviceNameDISPLAY }}</b></v-toolbar-title>
-        <v-spacer></v-spacer>
+  <!-- switch row -->
+  <v-row align="center" justify="space-between">
 
-        <!-- status indicator -->
-        <div :style="{color: statusColor}"><b>{{ status }}</b></div>
+    <!-- switch -->
+    <v-col cols="4" class="pa-0">
+      <v-switch :disabled="status === 'OFFLINE'" @change="publish" v-model="isOn" inset :label="`${deviceConfig.deviceNameDISPLAY}`"/>
+    </v-col>
+
+    <!-- status indicator & setup button -->
+    <v-col cols="6" >
+      <div class="text-right" :style="{color: statusColor}"><b>{{ status }}  </b>
 
         <!-- setup button -->
-        <v-btn icon @click.stop="dialog=true">
+        <v-btn :disabled="status === 'OFFLINE'"  icon @click.stop="dialog=true" x-small>
           <v-icon>mdi-cog</v-icon>
         </v-btn>
 
         <!-- setup dialog -->
-        <DeviceSetupDialog v-model="dialog" :device-config="this.deviceConfig" />
+        <DeviceSetupDialog v-model="dialog" :device-config="this.deviceConfig"/>
 
-      </v-toolbar>
+      </div>
+    </v-col>
 
-      <!-- card body -->
-      <v-card-text>
-        <v-row class="mb-4" justify="space-between">
-
-          <!-- toggle button -->
-          <v-col class="text-center">
-            <v-btn dark depressed rounded x-large :color="color" @click="toggle">
-              <v-icon class="pr-3" large >
-                {{ isOn ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off-outline' }}
-              </v-icon>
-               Switch: {{ isOn ? 'ON' : 'OFF'}}
-            </v-btn>
-          </v-col>
-
-        </v-row>
-
-      </v-card-text>
-    </v-card>
-  </v-col>
+  </v-row>
 </template>
 
 <script>
 import {mqttClient} from "@/main";
 
 export default {
-  name: "WifiSwitch",
+  name: "SwitchBoardSwitch",
   components: {},
   data: () => ({
     isOn: false,
     status: 'OFFLINE',
-    dialog: false,
     unsubscribe: null,
+    dialog: false,
   }),
   computed: {
     // generate mqtt topics
@@ -63,24 +47,15 @@ export default {
       return "HADIS/" + this.deviceConfig.deviceName + "/STATUS"
     },
 
-    // toggle button color
-    color() {
-      return this.isOn ? 'primary' : 'gray';
-    },
     // calculate device status color & get vuetify theme colors
     statusColor() {
       if (this.status === "ONLINE") return this.$vuetify.theme.themes.dark.success
-      if (this.status === "OFFLINE") return this.$vuetify.theme.themes.dark.error
+      if (this.status === "OFFLINE") return "#fd989d"
       return 'gray'
     },
 
   },
   methods: {
-    // handle switch toggle on button press
-    toggle() {
-      this.isOn = !this.isOn
-      this.publish();
-    },
     // publish switch state to mqtt
     publish() {
       let mqttMessage = this.isOn ? "1" : "0";
@@ -111,8 +86,6 @@ export default {
   },
   // on component mount subscribe to required mqtt topics
   mounted() {
-    console.log(this.topicStatus)
-
     mqttClient.subscribe(this.topicStatus);
     mqttClient.subscribe(this.topicSwitch);
   },
@@ -124,4 +97,3 @@ export default {
   }
 };
 </script>
-

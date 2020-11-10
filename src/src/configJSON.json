@@ -4,7 +4,21 @@
       "groupRoute": "/",
       "groupNameDISPLAY": "Dashboard",
       "components": [
-
+        {
+          "deviceName": "SwitchBoard",
+          "deviceNameDISPLAY": "SwitchBoard",
+          "componentType": "SwitchBoard",
+          "switches": [
+            {
+              "deviceName": "WifiPlug1",
+              "deviceNameDISPLAY": "Smreka"
+            },
+            {
+              "deviceName": "DeskLight1",
+              "deviceNameDISPLAY": "ledica"
+            }
+          ]
+        }
       ]
     },
     {
