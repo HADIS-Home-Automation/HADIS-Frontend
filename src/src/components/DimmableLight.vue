@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="10" lg="5" xl="4">
+  <v-col cols="10" lg="5" xl="5">
     <!-- dimmable light card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
@@ -42,7 +42,7 @@
         </v-row>
 
         <!-- slider -->
-        <v-slider v-model="sliderValue" @change="publish()" hange="" track-color="grey" min="0" max="1023" step="32" thumb-label>
+        <v-slider v-model="sliderValue" @change="publish()" track-color="grey" min="0" max="1023" step="32" thumb-label>
 
           <!-- slider - button -->
           <template v-slot:prepend>
@@ -121,7 +121,7 @@ export default {
       }
       this.publish();
     },
-    // publish brightness to mqtt
+    // publishCommand brightness to mqtt
     publish() {
       mqttClient.publish(this.topicLight, this.sliderValue.toString(), {qos: 0, retain: true})
     },

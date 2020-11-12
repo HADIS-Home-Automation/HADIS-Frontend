@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="10" lg="5" xl="4">
+  <v-col cols="10" lg="5" xl="5">
     <!-- dimmable light card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
@@ -81,7 +81,7 @@ export default {
       this.isOn = !this.isOn
       this.publish();
     },
-    // publish switch state to mqtt
+    // publishCommand switch state to mqtt
     publish() {
       let mqttMessage = this.isOn ? "1" : "0";
       mqttClient.publish(this.topicSwitch, mqttMessage, {qos: 0, retain: true})

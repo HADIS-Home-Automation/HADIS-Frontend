@@ -68,6 +68,10 @@ Vue.component("WifiSwitch", WifiSwitch);
 import SwitchBoard from "@/components/SwitchBoard";
 Vue.component("SwitchBoard", SwitchBoard);
 
+// rgbw controller
+import RGBWController from "@/components/RGBW-Controller";
+Vue.component("RGBW-Controller", RGBWController);
+
 
 // vue init
 new Vue({

@@ -48,7 +48,7 @@ export default {
   methods:{
     // proceed click function
     clickConfirm(){
-      // publish setup mode request to MQTT
+      // publishCommand setup mode request to MQTT
       mqttClient.publish(this.topicSetup, "1", {qos: 0, retain: false});
 
       this.show = false;

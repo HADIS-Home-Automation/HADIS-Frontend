@@ -61,6 +61,7 @@ componentType: "WifiSwitch"
 
 #### Switch Board for WIFI Switches
 Component for controlling multiple HADIS WIFI switches.
+Append different wifi switches or plugs to switchboard in switches array.
 See usage example bellow.
 ```
 componentType: "SwitchBoard"
@@ -79,9 +80,44 @@ example usage:
             "deviceNameDISPLAY": "Plug 1"
           },
           {
-            "deviceName": "WifiPlug2",
+            "deviceName": "WifiSwitch2",
             "deviceNameDISPLAY": "Plug 2"
           }
+    ]
+}
+```
+
+#### RGBW Controller
+Control component for HADIS RGBW controller.\
+Mode supports all permutations of rgw & rgbw to support different kinds of led strips.\
+Presets are rgb hex values for quick color selection. Number of presets is not limited.
+
+```
+componentType: "RGBW-Controller"
+mode: "rgb / rgbw"
+pressets: [array of hex rgb value]
+```
+
+example usage:
+```JSON
+{
+    "deviceName": "RGBWstrip2",
+    "deviceNameDISPLAY": "RGB Trak",
+    "componentType": "RGBW-Controller",
+    "mode" : "brgw",
+    "presets": [
+            {
+              "color": "#FF0000"
+            },
+            {
+              "color": "#00FF00"
+            },
+            {
+              "color": "#0000FF"
+            },
+            {
+              "color": "#FFFFFF"
+            }
     ]
 }
 ```
