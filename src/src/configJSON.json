@@ -1,13 +1,6 @@
 {
   "groups": [
     {
-      "groupRoute": "/",
-      "groupNameDISPLAY": "Dashboard",
-      "components": [
-
-      ]
-    },
-    {
       "groupRoute": "/matejSoba",
       "groupNameDISPLAY": "Matej Soba",
       "components": [

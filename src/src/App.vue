@@ -3,7 +3,7 @@
     <!-- toolbar -->
     <v-app-bar color="primary" dark app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>HADIS</v-toolbar-title>
+      <v-toolbar-title>H△DIS</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 
@@ -26,30 +26,14 @@
 
     </v-navigation-drawer>
 
-    <!-- app view -->
-    <v-main>
+    <!-- app view for ui -->
+    <v-main >
 
-      <!-- heading container -->
-      <v-container>
-        <v-row align="center">
-          <div class="text-h3 font-weight-light pa-auto mx-auto">{{ getRightGroup().groupNameDISPLAY }}</div>
-        </v-row>
-      </v-container>
-
-      <!-- control cards container -->
-      <v-container>
-        <v-row align="center" justify="center">
-
-          <!-- dynamic control component rendering -->
-          <template v-for="component in getRightGroup().components">
-            <component :is="component.componentType" :deviceConfig=component :key="component.deviceName"></component>
-          </template>
-
-        </v-row>
-      </v-container>
+      <router-view/>
 
     </v-main>
 
+    <!-- app view displayed only as landing page -->
   </v-app>
 </template>
 
@@ -63,19 +47,5 @@ export default {
     drawer: null,
     contentJSON: content,
   }),
-  methods: {
-    // return content of group selected by router
-    getRightGroup() {
-      let groups = this.contentJSON.groups;
-
-      for (const i in groups) {
-
-        if (groups[i].groupRoute === this.$route.path)
-          return groups[i];
-
-      }
-      return null
-    },
-  },
 };
 </script>
