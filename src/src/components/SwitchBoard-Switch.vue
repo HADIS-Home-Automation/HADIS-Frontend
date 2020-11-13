@@ -50,7 +50,9 @@ export default {
     // calculate device status color & get vuetify theme colors
     statusColor() {
       if (this.status === "ONLINE") return this.$vuetify.theme.themes.dark.success
-      if (this.status === "OFFLINE") return "#fd989d"
+      if (this.status === "OFFLINE") return "#863539"
+      // saved for light mode color
+      //if (this.status === "OFFLINE") return "#fd989d"
       return 'gray'
     },
 

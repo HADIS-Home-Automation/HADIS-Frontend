@@ -42,7 +42,7 @@
         </v-row>
 
         <!-- slider -->
-        <v-slider v-model="sliderValue" @change="publish()" track-color="grey" min="0" max="1023" step="32" thumb-label>
+        <v-slider v-model="sliderValue" @change="publish()" color="secondary" track-color="grey" min="0" max="1023" step="32" thumb-label>
 
           <!-- slider - button -->
           <template v-slot:prepend>

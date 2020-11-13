@@ -4,6 +4,7 @@ import content from "../configJSON.json"
 import ControllerPanelPage from "@/views/ControllerPanelPage";
 import LandingPage from "@/views/LandingPage";
 
+// init default routes
 let routes = [{
   path: "/",
   name: "LandingPage",

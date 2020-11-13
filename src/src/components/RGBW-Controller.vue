@@ -36,7 +36,8 @@
         <!-- toggle button -->
         <v-row>
           <v-col class="text-center">
-            <v-btn :dark="buttonColor()" rounded x-large :color="currentColor" @click="toggle">
+            <!-- change :light to :dark on Light mode-->
+            <v-btn :light="buttonColor()" rounded x-large :color="currentColor" @click="toggle">
               <v-icon class="pr-3" large>
                 {{ isOn ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off-outline' }}
               </v-icon>
@@ -169,7 +170,10 @@ export default {
     },
     // determine button text color depending on background
     buttonColor() {
-      return (this.buttonColorMemory.r * 0.299 + this.buttonColorMemory.g * 0.587 + this.buttonColorMemory.b * 0.114) < 210
+      // dark mode
+      return (this.buttonColorMemory.r * 0.299 + this.buttonColorMemory.g * 0.587 + this.buttonColorMemory.b * 0.114) > 210
+      // light mode
+      //return (this.buttonColorMemory.r * 0.299 + this.buttonColorMemory.g * 0.587 + this.buttonColorMemory.b * 0.114) < 210
     },
     // handle color preset click
     presetColorChange(color) {

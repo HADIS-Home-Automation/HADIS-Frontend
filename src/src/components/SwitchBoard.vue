@@ -2,7 +2,7 @@
 
   <v-col cols="10" lg="5" xl="5">
     <!-- dimmable light card -->
-    <v-card class="ma-auto rounded-lg">
+    <v-card class="ma-auto rounded-lg" >
 
       <!-- card toolbar -->
       <v-toolbar flat>

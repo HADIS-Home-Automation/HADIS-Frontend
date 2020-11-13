@@ -3,7 +3,11 @@
     <!-- toolbar -->
     <v-app-bar color="primary" dark app clipped-left>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>H△DIS</v-toolbar-title>
+
+      <!-- on click take you to landing -->
+      <v-img @click="$router.push('/').catch(err => {})" max-width="35" max-height="35" src="./assets/logo.png" contain/>
+      <v-toolbar-title @click="$router.push('/').catch(err => {})" >H△DIS</v-toolbar-title>
+
       <v-spacer></v-spacer>
     </v-app-bar>
 
@@ -12,7 +16,7 @@
 
       <!-- drawer components -->
       <v-list nav>
-        <v-list-item-group color="primary">
+        <v-list-item-group color="secondary">
 
           <!-- dynamic drawer navigation rendering -->
           <v-list-item @click="$router.push(group.groupRoute).catch(err => {})"
@@ -33,7 +37,6 @@
 
     </v-main>
 
-    <!-- app view displayed only as landing page -->
   </v-app>
 </template>
 
