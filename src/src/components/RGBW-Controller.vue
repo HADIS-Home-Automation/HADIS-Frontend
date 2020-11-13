@@ -116,7 +116,7 @@ export default {
       this.colorPicker.color.set(this.currentColor);
       this.publishCommand();
     },
-    // publishCommand switch state to mqtt
+    // publish switch state to mqtt
     publishCommand() {
       let mqttMessage = this.currentColor;
       mqttClient.publish(this.topicRGBWcontrol, mqttMessage, {qos: 0, retain: true})

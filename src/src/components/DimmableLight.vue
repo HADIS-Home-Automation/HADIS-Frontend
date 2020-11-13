@@ -121,7 +121,7 @@ export default {
       }
       this.publish();
     },
-    // publishCommand brightness to mqtt
+    // publish brightness to mqtt
     publish() {
       mqttClient.publish(this.topicLight, this.sliderValue.toString(), {qos: 0, retain: true})
     },

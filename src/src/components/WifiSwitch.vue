@@ -81,7 +81,7 @@ export default {
       this.isOn = !this.isOn
       this.publish();
     },
-    // publishCommand switch state to mqtt
+    // publish switch state to mqtt
     publish() {
       let mqttMessage = this.isOn ? "1" : "0";
       mqttClient.publish(this.topicSwitch, mqttMessage, {qos: 0, retain: true})
