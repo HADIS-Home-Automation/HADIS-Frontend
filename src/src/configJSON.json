@@ -6,7 +6,7 @@
       "components": [
         {
           "deviceName": "WifiPlug1",
-          "deviceNameDISPLAY": "Smreka",
+          "deviceNameDISPLAY": "Luč",
           "componentType": "WifiSwitch"
         },
         {
@@ -42,7 +42,7 @@
       "components": [
         {
           "deviceName": "SwitchBoard",
-          "deviceNameDISPLAY": "SwitchBoard",
+          "deviceNameDISPLAY": "Stikala",
           "componentType": "SwitchBoard",
           "switches": [
             {
