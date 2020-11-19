@@ -33,6 +33,11 @@
               "color": "#FFFFFF"
             }
           ]
+        },
+        {
+          "deviceName": "TempHumSensor1",
+          "deviceNameDISPLAY": "Temperature & Humidity",
+          "componentType": "TempHumSensor"
         }
       ]
     },

@@ -1,6 +1,7 @@
 <template>
   <v-col cols="10" lg="5" xl="5">
-    <!-- wifi switch card -->
+
+    <!-- sensor card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
       <!-- card toolbar -->
@@ -23,20 +24,23 @@
 
       <!-- card body -->
       <v-card-text>
-        <v-row class="mb-4" justify="space-between">
 
-          <!-- toggle button -->
+        <!-- card text -->
+        <v-row class="mb-4" justify="center" >
+
+          <!-- temperature indicator -->
+          <v-col class="text-center" >
+            <span class="subheading font-weight-light mr-1">Temperature: </span><br>
+            <span class="display-3 font-weight-light">{{ temp }}°C</span>
+          </v-col>
+
+          <!-- humidity indicator -->
           <v-col class="text-center">
-            <v-btn dark depressed rounded x-large :color="color" @click="toggle">
-              <v-icon class="pr-3" large >
-                {{ isOn ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off-outline' }}
-              </v-icon>
-               Switch: {{ isOn ? 'ON' : 'OFF'}}
-            </v-btn>
+            <span class="subheading font-weight-light mr-1">Humidity: </span><br>
+            <span class="display-3 font-weight-light">{{ hum }}%</span>
           </v-col>
 
         </v-row>
-
       </v-card-text>
     </v-card>
   </v-col>
@@ -44,47 +48,32 @@
 
 <script>
 import {mqttClient} from "@/main";
-
 export default {
-  name: "WifiSwitch",
+  name: "TempHumSensor",
   components: {},
   data: () => ({
-    isOn: false,
+    temp: 0,
+    hum: 0,
     status: 'OFFLINE',
     dialog: false,
     unsubscribe: null,
   }),
   computed: {
     // generate mqtt topics
-    topicSwitch() {
-      return "HADIS/" + this.deviceConfig.deviceName + "/SWITCH"
+    topicTemp() {
+      return "HADIS/" + this.deviceConfig.deviceName + "/TEMP"
+    },
+    topicHum() {
+      return "HADIS/" + this.deviceConfig.deviceName + "/HUM"
     },
     topicStatus() {
       return "HADIS/" + this.deviceConfig.deviceName + "/STATUS"
-    },
-
-    // toggle button color
-    color() {
-      return this.isOn ? 'primary' : 'gray';
     },
     // calculate device status color & get vuetify theme colors
     statusColor() {
       if (this.status === "ONLINE") return this.$vuetify.theme.themes.dark.success
       if (this.status === "OFFLINE") return this.$vuetify.theme.themes.dark.error
       return 'gray'
-    },
-
-  },
-  methods: {
-    // handle switch toggle on button press
-    toggle() {
-      this.isOn = !this.isOn
-      this.publish();
-    },
-    // publish switch state to mqtt
-    publish() {
-      let mqttMessage = this.isOn ? "1" : "0";
-      mqttClient.publish(this.topicSwitch, mqttMessage, {qos: 0, retain: true})
     },
   },
   props: {
@@ -101,27 +90,28 @@ export default {
       if (messageState.topic === this.topicStatus) {
         this.status = messageState.msg.toString();
       }
-
-      // handle message for device toggling
-      if (messageState.topic === this.topicSwitch) {
-        this.isOn = !!parseInt(messageState.msg.toString());
+      // handle message for device brightness
+      if (messageState.topic === this.topicTemp) {
+        this.temp = parseFloat(messageState.msg.toString()).toFixed(2);
       }
-
+      // handle message for device brightness toggle value
+      if (messageState.topic === this.topicHum) {
+        this.hum = parseFloat(messageState.msg.toString()).toFixed(2);
+      }
     });
   },
   // on component mount subscribe to required mqtt topics
   mounted() {
-    console.log(this.topicStatus)
-
     mqttClient.subscribe(this.topicStatus);
-    mqttClient.subscribe(this.topicSwitch);
+    mqttClient.subscribe(this.topicTemp);
+    mqttClient.subscribe(this.topicHum);
   },
   // on component destroy unsubscribe from mqtt topics & vuex mqtt message store
   destroyed() {
     this.unsubscribe();
-    mqttClient.unsubscribe(this.topicSwitch);
+    mqttClient.unsubscribe(this.topicTemp);
+    mqttClient.unsubscribe(this.topicHum);
     mqttClient.unsubscribe(this.topicStatus);
   }
 };
 </script>
-

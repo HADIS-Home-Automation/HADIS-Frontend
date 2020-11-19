@@ -1,7 +1,8 @@
 <template>
 
   <v-col cols="10" lg="5" xl="5">
-    <!-- dimmable light card -->
+
+    <!-- switch board card -->
     <v-card class="ma-auto rounded-lg" >
 
       <!-- card toolbar -->

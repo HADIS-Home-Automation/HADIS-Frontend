@@ -236,6 +236,8 @@ export default {
     this.colorPicker = new iro.ColorPicker('#picker', {
       width: 290,
       display: "inline-block",
+      borderWidth: 3,
+      borderColor: "#1e1e1e"
     });
 
     // handle color picker input

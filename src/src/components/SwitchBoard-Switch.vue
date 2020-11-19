@@ -35,8 +35,8 @@ export default {
   data: () => ({
     isOn: false,
     status: 'OFFLINE',
-    unsubscribe: null,
     dialog: false,
+    unsubscribe: null,
   }),
   computed: {
     // generate mqtt topics
@@ -51,6 +51,7 @@ export default {
     statusColor() {
       if (this.status === "ONLINE") return this.$vuetify.theme.themes.dark.success
       if (this.status === "OFFLINE") return "#863539"
+
       // saved for light mode color
       //if (this.status === "OFFLINE") return "#fd989d"
       return 'gray'

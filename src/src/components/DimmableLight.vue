@@ -1,5 +1,6 @@
 <template>
   <v-col cols="10" lg="5" xl="5">
+
     <!-- dimmable light card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 
@@ -63,7 +64,7 @@
 
 <script>
 import {mqttClient} from "@/main";
-// initialisation for vuex store mutation subscription
+
 export default {
   name: "DimmableLight",
   components: {},

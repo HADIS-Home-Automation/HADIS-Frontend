@@ -72,6 +72,9 @@ Vue.component("SwitchBoard", SwitchBoard);
 import RGBWController from "@/components/RGBW-Controller";
 Vue.component("RGBW-Controller", RGBWController);
 
+// temperature & humidity sensor
+import TempHumSensor from "@/components/TempHumSensor";
+Vue.component("TempHumSensor", TempHumSensor);
 
 // vue init
 new Vue({

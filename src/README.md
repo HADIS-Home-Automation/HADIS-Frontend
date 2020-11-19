@@ -121,3 +121,11 @@ example usage:
     ]
 }
 ```
+
+#### Temperature & Humidity sensor
+Display component for HADIS temperature & humidity sensor.
+Update interval is 1min, for inside use only.
+
+```
+componentType: "TempHumSensor"
+```
