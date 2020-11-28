@@ -18,7 +18,7 @@
           "deviceName": "RGBWstrip2",
           "deviceNameDISPLAY": "RGB Trak",
           "componentType": "RGBW-Controller",
-          "mode" : "brgw",
+          "mode": "brgw",
           "presets": [
             {
               "color": "#FF0000"
@@ -33,11 +33,6 @@
               "color": "#FFFFFF"
             }
           ]
-        },
-        {
-          "deviceName": "TempHumSensor1",
-          "deviceNameDISPLAY": "Temperature & Humidity",
-          "componentType": "TempHumSensor"
         }
       ]
     },
@@ -45,6 +40,11 @@
       "groupRoute": "/dnevnaSoba",
       "groupNameDISPLAY": "Dnevna Soba",
       "components": [
+        {
+          "deviceName": "TempHumSensor1",
+          "deviceNameDISPLAY": "Temperature & Humidity",
+          "componentType": "TempHumSensor"
+        },
         {
           "deviceName": "SwitchBoard",
           "deviceNameDISPLAY": "Stikala",
@@ -64,7 +64,7 @@
           "deviceName": "RGBWstrip1",
           "deviceNameDISPLAY": "RGB Trak",
           "componentType": "RGBW-Controller",
-          "mode" : "grb",
+          "mode": "grb",
           "presets": [
             {
               "color": "#FF0000"

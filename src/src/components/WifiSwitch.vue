@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="10" lg="5" xl="5">
+  <v-col cols="12" >
     <!-- wifi switch card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg" >
 

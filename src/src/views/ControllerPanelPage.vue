@@ -9,12 +9,31 @@
 
     <!-- control cards container -->
     <v-container v-if="this.$router.currentRoute.path !== '/'">
-      <v-row align="center" justify="center">
+      <v-row align="start" justify="center">
 
-        <!-- dynamic control component rendering -->
-        <template v-for="component in getRightGroup().components">
-          <component :is="component.componentType" :deviceConfig=component :key="component.deviceName"></component>
-        </template>
+        <!-- 2 column rendering on large displays-->
+
+        <!-- first, default column -->
+        <v-col cols="10" lg="5">
+          <v-row justify="end">
+            <!-- dynamic control component rendering -->
+            <template v-for="(component, index) in getRightGroup().components">
+              <component :is="component.componentType" :deviceConfig=component :key="component.deviceName" v-if="index % 2 === 0 || $vuetify.breakpoint.mdAndDown"></component>
+            </template>
+          </v-row>
+        </v-col>
+
+        <!-- secondary column -->
+        <v-col cols="10" lg="5" v-if="$vuetify.breakpoint.lgAndUp">
+          <v-row justify="start">
+            <!-- dynamic control component rendering -->
+            <template v-for="(component, index) in getRightGroup().components">
+              <component :is="component.componentType" :deviceConfig=component :key="component.deviceName" v-if="index % 2 !== 0"></component>
+            </template>
+          </v-row>
+        </v-col>
+
+
 
       </v-row>
     </v-container>
