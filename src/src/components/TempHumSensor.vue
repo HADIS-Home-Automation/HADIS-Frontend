@@ -31,13 +31,13 @@
           <!-- temperature indicator -->
           <v-col class="text-center" >
             <span class="subheading font-weight-light mr-1">Temperature: </span><br>
-            <span class="display-3 font-weight-light">{{ temp }}°C</span>
+            <span class="text-h4 font-weight-light">{{ temp }}°C</span>
           </v-col>
 
           <!-- humidity indicator -->
           <v-col class="text-center">
             <span class="subheading font-weight-light mr-1">Humidity: </span><br>
-            <span class="display-3 font-weight-light">{{ hum }}%</span>
+            <span class="text-h4 font-weight-light">{{ hum }}%</span>
           </v-col>
 
         </v-row>
