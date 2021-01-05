@@ -61,7 +61,17 @@ componentType: "WifiSwitch"
 
 #### Switch Board for WIFI Switches
 Component for controlling multiple HADIS WIFI switches.
-Append different wifi switches or plugs to switchboard in switches array.
+Append different wifi switches or plugs to switchboard in switches array
+To use multiple channel switches replace **deviceNameDISPLAY** with **deviceNameDISPLAYn** for each channel and add **channel** field with number of channels.
+
+**Currently only 2 channel support**
+```
+deviceNameDISPLAY1: display name of first channel
+deviceNameDISPLAY2: display name of second channel
+deviceNameDISPLAYn: display name of n-th channel
+channel: number of channels
+```
+
 See usage example bellow.
 ```
 componentType: "SwitchBoard"
@@ -82,6 +92,12 @@ example usage:
           {
             "deviceName": "WifiSwitch2",
             "deviceNameDISPLAY": "Plug 2"
+          },
+          {
+            "deviceName": "WifiSwitch3",
+            "deviceNameDISPLAY1": "Plug 3 - 1",
+            "deviceNameDISPLAY2": "Plug 3 - 2",
+            "channel": 2
           }
     ]
 }

@@ -20,4 +20,4 @@ Code for ESP8266 - HADIS devices is available in [HADIS-Devices repository](http
 
 ## License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)

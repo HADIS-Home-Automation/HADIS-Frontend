@@ -18,7 +18,8 @@
           <!-- dynamic switch row rendering -->
           <v-col class="" cols="11" offset="1">
             <template v-for="component in deviceConfig.switches">
-              <SwitchBoardSwitch :deviceConfig=component :key="component.deviceName"></SwitchBoardSwitch>
+                <SwitchBoardSwitchC2 :deviceConfig=component :key="component.deviceName" v-if="component.channel === 2"></SwitchBoardSwitchC2>
+                <SwitchBoardSwitchC1 :deviceConfig=component :key="component.deviceName" v-else></SwitchBoardSwitchC1>
             </template>
           </v-col>
 
@@ -32,11 +33,12 @@
 </template>
 
 <script>
-import SwitchBoardSwitch from "@/components/SwitchBoard-Switch";
+import SwitchBoardSwitchC1 from "@/components/SwitchBoard-Switch-C1";
+import SwitchBoardSwitchC2 from "@/components/SwitchBoard-Switch-C2";
 
 export default {
   name: "SwitchBoard",
-  components: {SwitchBoardSwitch},
+  components: {SwitchBoardSwitchC1, SwitchBoardSwitchC2},
   props: {
     deviceConfig: Object,
   },
