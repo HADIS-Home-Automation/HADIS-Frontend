@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" >
+  <v-col cols="12">
     <!-- dimmable light card -->
     <v-card :disabled="status === 'OFFLINE'" class="ma-auto rounded-lg">
 
@@ -7,6 +7,15 @@
       <v-toolbar flat>
         <v-toolbar-title><b>{{ this.deviceConfig.deviceNameDISPLAY }}</b></v-toolbar-title>
         <v-spacer></v-spacer>
+
+        <!-- On/Off button also in toolbar -->
+        <!-- change :light to :dark on Light mode-->
+        <v-btn class="mx-3" :light="buttonColor()" rounded :color="currentColor" @click="toggle" v-if="$vuetify.breakpoint.smAndDown">
+          <v-icon large>
+            {{ isOn ? 'mdi-toggle-switch' : 'mdi-toggle-switch-off-outline' }}
+          </v-icon>
+        </v-btn>
+
 
         <!-- status indicator -->
         <div :style="{color: statusColor}"><b>{{ status }}</b></div>

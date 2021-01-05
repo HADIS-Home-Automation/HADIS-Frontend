@@ -4,7 +4,7 @@
   <v-row align="center" justify="space-between">
 
     <!-- switch -->
-    <v-col cols="4" class="pa-0">
+    <v-col cols="6" class="pa-0">
       <v-switch :disabled="status === 'OFFLINE'" @change="publish1" v-model="isOn1" inset :label="`${deviceConfig.deviceNameDISPLAY1}`"/>
     </v-col>
 
@@ -24,7 +24,7 @@
     </v-col>
 
     <!-- switch -->
-    <v-col cols="4" class="pa-0">
+    <v-col cols="6" class="pa-0">
       <v-switch :disabled="status === 'OFFLINE'" @change="publish2" v-model="isOn2" inset :label="`${deviceConfig.deviceNameDISPLAY2}`"/>
     </v-col>
 

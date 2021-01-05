@@ -48,7 +48,7 @@
             {
               "deviceName": "Duo1",
               "deviceNameDISPLAY1": "Luč",
-              "deviceNameDISPLAY2": "Tv luč",
+              "deviceNameDISPLAY2": "Tv_luč",
               "channel": 2
             },
             {
@@ -59,7 +59,7 @@
             },
             {
               "deviceName": "WifiSwitch1",
-              "deviceNameDISPLAY": "Lampa (1)"
+              "deviceNameDISPLAY": "Lampa"
             },
             {
               "deviceName": "WifiPlug1",
