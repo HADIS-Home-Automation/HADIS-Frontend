@@ -111,8 +111,6 @@ export default {
   },
   // on component mount subscribe to required mqtt topics
   mounted() {
-    console.log(this.topicStatus)
-
     mqttClient.subscribe(this.topicStatus);
     mqttClient.subscribe(this.topicSwitch);
   },
