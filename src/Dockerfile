@@ -1,7 +1,7 @@
 FROM node:lts-alpine as build
 
 # install simple http server for serving static content
-RUN npm install -g http-server
+RUN npm install -g serve
 
 # make the 'app' folder the current working directory
 WORKDIR /app
@@ -15,12 +15,21 @@ RUN npm install
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
+# add env variable
+ARG VUE_APP_SERVER
+ENV VUE_APP_SERVER $VUE_APP_SERVER
+
 # build app for production with minification
 RUN npm run build
 
-FROM alpine:latest as production
-COPY --from=build /app/dist /app
-WORKDIR /app
+#production stage
 
-EXPOSE 8080
-CMD [ "http-server", "." ]
+FROM node:lts-alpine as production
+WORKDIR /app
+COPY package*.json ./
+RUN npm install -g serve
+RUN npm install --production
+COPY --from=build /app/dist ./dist
+
+EXPOSE 5000
+CMD [ "serve", "-s", "dist" ]

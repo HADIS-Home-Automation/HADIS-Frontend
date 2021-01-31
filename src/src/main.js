@@ -8,7 +8,8 @@ const mqtt = require("mqtt");
 
 // connection init to mqtt broker with web socket
 const clientId = "HADIS-Client-" + Math.random().toString(16).substr(2, 8);
-const host = "ws://docker-iot:9001";
+let ip = process.env.VUE_APP_SERVER || "localhost";
+const host = "ws://" + ip + ":9001";
 const options = {
     keepalive: 60,
     clientId: clientId,
