@@ -17,8 +17,8 @@
 
     <!-- subtitle -->
     <v-row>
-      <div class="text-h5 font-weight-light pa-auto mx-auto text-center">Home Automation, Development and Integration
-        System
+      <div class="text-h5 font-weight-light pa-auto mx-auto text-center">
+        Home Automation, Development and Integration System
         <v-divider/>
       </div>
     </v-row>

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import "@mdi/font/css/materialdesignicons.css"
 
 // vuetify design plugin init
 
@@ -14,5 +15,8 @@ export default new Vuetify({
                 secondary: '#FFC107',
             },
         },
+    },
+    icons: {
+        iconfont: 'mdi', // default - only for display purposes
     },
 });

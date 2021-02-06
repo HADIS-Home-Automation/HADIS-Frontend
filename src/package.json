@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@jaames/iro": "^5.2.3",
+    "@mdi/font": "^5.9.55",
     "core-js": "^3.6.5",
     "mqtt": "^4.2.4",
+    "typeface-roboto": "^1.1.13",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11",
