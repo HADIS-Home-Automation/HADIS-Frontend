@@ -15,13 +15,14 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Build and Run project in Docker
 ```
-npm run lint
+docker build -t --build-arg VUE_APP_SERVER="SERVER IP" hadis-webapp .
+docker run -d -p 5000:8080 --name hadis hadis-webapp
 ```
 
 ## Customize application
-HADIS frontend is built dynamically from [configJSON](src/configJSON.json).
+HADIS frontend is built dynamically from a JSON configuration file - [configJSON](src/configJSON.json). Sample configuration is provided in the config file.
 
 ConfigJSON form displayed bellow.
 Each **groupRoute** & **deviceName** must be unique! 
@@ -86,17 +87,17 @@ example usage:
     "componentType": "SwitchBoard",
     "switches": [
           {
-            "deviceName": "WifiPlug1",
-            "deviceNameDISPLAY": "Plug 1"
+            "deviceName": "WifiSwitch1",
+            "deviceNameDISPLAY": "Switch 1"
           },
           {
             "deviceName": "WifiSwitch2",
-            "deviceNameDISPLAY": "Plug 2"
+            "deviceNameDISPLAY": "Switch 2"
           },
           {
             "deviceName": "WifiSwitch3",
-            "deviceNameDISPLAY1": "Plug 3 - 1",
-            "deviceNameDISPLAY2": "Plug 3 - 2",
+            "deviceNameDISPLAY1": "Switch 3 - 1",
+            "deviceNameDISPLAY2": "Switch 3 - 2",
             "channel": 2
           }
     ]
@@ -118,7 +119,7 @@ example usage:
 ```JSON
 {
     "deviceName": "RGBWstrip2",
-    "deviceNameDISPLAY": "RGB Trak",
+    "deviceNameDISPLAY": "RGBW Strip",
     "componentType": "RGBW-Controller",
     "mode" : "brgw",
     "presets": [
@@ -140,7 +141,7 @@ example usage:
 
 #### Temperature & Humidity sensor
 Display component for HADIS temperature & humidity sensor.
-Update interval is 1min, for inside use only.
+Update interval is 1 min, for inside use only.
 
 ```
 componentType: "TempHumSensor"

@@ -27,8 +27,13 @@ RUN npm run build
 FROM node:lts-alpine as production
 WORKDIR /app
 COPY package*.json ./
+
+# install simple http server for serving static content
 RUN npm install -g serve
+
+# install project dependencies minified for production
 RUN npm install --production
+
 COPY --from=build /app/dist ./dist
 
 EXPOSE 5000
