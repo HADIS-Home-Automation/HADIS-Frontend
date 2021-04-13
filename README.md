@@ -1,6 +1,7 @@
 # HADIS - Home Automation, Development and Integration System
 
-<img src="https://github.com/HADIS-Home-Automation/HADIS-Frontend/blob/main/src/src/assets/logo.png" width="250"/>\
+![Logo](./assets/Thumb/logo.png)
+
 Frontend client for Home Automation, Development and Integration System. 
 
 ## Introduction
@@ -21,3 +22,15 @@ Code for ESP8266 - HADIS devices is available in [HADIS-Devices repository](http
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
+## Sample images
+
+Sample image of Single switch, Dimmable Light & RGBW controller component
+
+![Sample image 1](./assets/Thumb/Sample1.png)
+
+Sample image of Temperature & relative Humidity and Switchboard with two 1-channel switches & one 2-channel.
+
+![Sample image 1](./assets/Thumb/Sample2.png)
+
+
