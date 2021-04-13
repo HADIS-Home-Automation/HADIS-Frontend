@@ -1,226 +1,69 @@
 {
   "groups": [
     {
-      "groupRoute": "/matejSoba",
-      "groupNameDISPLAY": "Matej Soba",
+      "groupRoute": "/sampleGroup1",
+      "groupNameDISPLAY": "Sample Group 1",
       "components": [
         {
-          "deviceName": "Touch1",
-          "deviceNameDISPLAY": "Luč",
+          "deviceName": "Switch1",
+          "deviceNameDISPLAY": "Switch",
           "componentType": "WifiSwitch"
         },
         {
           "deviceName": "DimmableLight1",
-          "deviceNameDISPLAY": "Namizna luč",
+          "deviceNameDISPLAY": "Dimmable Light 1",
           "componentType": "DimmableLight"
         },
         {
-          "deviceName": "RGBWstrip2",
-          "deviceNameDISPLAY": "RGB Trak",
-          "componentType": "RGBW-Controller",
-          "mode" : "brgw",
-          "presets": [
-            {
-              "color": "#cfff7d"
-            },
-            {
-              "color": "#edff69"
-            },
-            {
-              "color": "#ffac12"
-            },
-            {
-              "color": "#ff9d00"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groupRoute": "/dnevnaSoba",
-      "groupNameDISPLAY": "Dnevna Soba",
-      "components": [
-        {
-          "deviceName": "SwitchBoard1",
-          "deviceNameDISPLAY": "Stikala",
-          "componentType": "SwitchBoard",
-          "switches": [
-            {
-              "deviceName": "Duo1",
-              "deviceNameDISPLAY1": "Luč",
-              "deviceNameDISPLAY2": "Tv_luč",
-              "channel": 2
-            },
-            {
-              "deviceName": "Duo2",
-              "deviceNameDISPLAY1": "Stena L",
-              "deviceNameDISPLAY2": "Stena D",
-              "channel": 2
-            },
-            {
-              "deviceName": "WifiSwitch1",
-              "deviceNameDISPLAY": "Lampa"
-            },
-            {
-              "deviceName": "WifiPlug1",
-              "deviceNameDISPLAY": "Smreka (1)"
-            }
-          ]
-        },
-        {
           "deviceName": "RGBWstrip1",
-          "deviceNameDISPLAY": "RGB Trak",
+          "deviceNameDISPLAY": "RGBW Strip",
           "componentType": "RGBW-Controller",
-          "mode" : "grb",
+          "mode": "rgbw",
           "presets": [
             {
-              "color": "#ff5e00"
-            },
-
-            {
-              "color": "#ffa333"
+              "color": "#ff0000"
             },
             {
-              "color": "#ffb685"
+              "color": "#00ff00"
             },
             {
-              "color": "#ff9c8c"
+              "color": "#0000ff"
+            },
+            {
+              "color": "#ffffff"
             }
           ]
         }
       ]
     },
     {
-      "groupRoute": "/kuhinja",
-      "groupNameDISPLAY": "Kuhinja",
+      "groupRoute": "/sampleGroup2",
+      "groupNameDISPLAY": "Sample Group 2",
       "components": [
+        {
+          "deviceName": "THS1",
+          "deviceNameDISPLAY": "Temp & RH Sensor",
+          "componentType": "TempHumSensor"
+        },
         {
           "deviceName": "SwitchBoard1",
-          "deviceNameDISPLAY": "Stikala",
+          "deviceNameDISPLAY": "Switch Board",
           "componentType": "SwitchBoard",
           "switches": [
             {
-              "deviceName": "Touch3",
-              "deviceNameDISPLAY": "Luč"
+              "deviceName": "SingleSwitch1",
+              "deviceNameDISPLAY": "Single 1",
+              "channel": 1
             },
             {
-              "deviceName": "DuoTouch1",
-              "deviceNameDISPLAY1": "Strop",
-              "deviceNameDISPLAY2": "Pult",
+              "deviceName": "SingleSwitch2",
+              "deviceNameDISPLAY": "Single 2"
+            },
+            {
+              "deviceName": "DualSwitch1",
+              "deviceNameDISPLAY1": "Dual 1",
+              "deviceNameDISPLAY2": "Dual 2",
               "channel": 2
-            },
-            {
-              "deviceName": "WifiPlug5",
-              "deviceNameDISPLAY": "Veje (5)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "groupRoute": "/spalnica",
-      "groupNameDISPLAY": "Spalnica",
-      "components": [
-        {
-          "deviceName": "Touch2",
-          "deviceNameDISPLAY": "Luč",
-          "componentType": "WifiSwitch"
-        }
-      ]
-    },
-    {
-      "groupRoute": "/development",
-      "groupNameDISPLAY": "Sonoff naprave",
-      "components": [
-        {
-          "deviceName": "SwitchBoard1",
-          "deviceNameDISPLAY": "Sonoff S20",
-          "componentType": "SwitchBoard",
-          "switches": [
-            {
-              "deviceName": "WifiPlug1",
-              "deviceNameDISPLAY": "WifiPlug1"
-            },
-            {
-              "deviceName": "WifiPlug2",
-              "deviceNameDISPLAY": "WifiPlug2"
-            },
-            {
-              "deviceName": "WifiPlug3",
-              "deviceNameDISPLAY": "WifiPlug3"
-            },
-            {
-              "deviceName": "WifiPlug4",
-              "deviceNameDISPLAY": "WifiPlug4"
-            },
-            {
-              "deviceName": "WifiPlug5",
-              "deviceNameDISPLAY": "WifiPlug5"
-            }
-          ]
-        },
-        {
-          "deviceName": "SwitchBoard2",
-          "deviceNameDISPLAY": "Sonoff basic",
-          "componentType": "SwitchBoard",
-          "switches": [
-            {
-              "deviceName": "WifiSwitch1",
-              "deviceNameDISPLAY": "WifiSwitch1"
-            },
-            {
-              "deviceName": "WifiSwitch2",
-              "deviceNameDISPLAY": "WifiSwitch2"
-            },
-            {
-              "deviceName": "WifiSwitch3",
-              "deviceNameDISPLAY": "WifiSwitch3"
-            },
-            {
-              "deviceName": "WifiSwitch4",
-              "deviceNameDISPLAY": "WifiSwitch4"
-            },
-            {
-              "deviceName": "WifiSwitch5",
-              "deviceNameDISPLAY": "WifiSwitch5"
-            }
-          ]
-        },
-        {
-          "deviceName": "SwitchBoard3",
-          "deviceNameDISPLAY": "Sonoff Duo",
-          "componentType": "SwitchBoard",
-          "switches": [
-            {
-              "deviceName": "Duo1",
-              "deviceNameDISPLAY1": "Duo1-1",
-              "deviceNameDISPLAY2": "Duo1-2",
-              "channel": 2
-            },
-            {
-              "deviceName": "Duo2",
-              "deviceNameDISPLAY1": "Duo2-1",
-              "deviceNameDISPLAY2": "Duo2-2",
-              "channel": 2
-            }
-          ]
-        },
-        {
-          "deviceName": "SwitchBoard4",
-          "deviceNameDISPLAY": "Sonoff Touch",
-          "componentType": "SwitchBoard",
-          "switches": [
-            {
-              "deviceName": "Touch1",
-              "deviceNameDISPLAY": "Touch1"
-            },
-            {
-              "deviceName": "Touch2",
-              "deviceNameDISPLAY": "Touch2"
-            },
-            {
-              "deviceName": "Touch3",
-              "deviceNameDISPLAY": "Touch3"
             }
           ]
         }
